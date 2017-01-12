@@ -15,7 +15,7 @@ variable "app_code_file" {
 }
 
 resource "aws_elastic_beanstalk_application" "app" {
-  name        = "aws docker microservice example"
+  name        = "hello-world"
   description = "tf-test-desc"
 }
 
