@@ -11,6 +11,6 @@ cd $BASEDIR/../infrastructure/dev
 terraform remote config \
   -backend=s3 \
   -backend-config="bucket=volusion-terraform-state-dev" \
-  -backend-config="key=hello-world/terraform.tfstate" 
+  -backend-config="key=microservice-example/terraform.tfstate" 
 
 terraform destroy --force

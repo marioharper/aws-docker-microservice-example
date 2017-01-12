@@ -5,7 +5,7 @@ variable "env" {
 variable "aws_region" {}
 
 variable "project_name" {
-  default = "hello-world"
+  default = "microservice-example"
 }
 
 variable "aws_account_id" {}

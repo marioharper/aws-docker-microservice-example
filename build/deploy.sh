@@ -11,7 +11,7 @@ cd $BASEDIR/../infrastructure/dev
 terraform remote config \
   -backend=s3 \
   -backend-config="bucket=volusion-terraform-state-dev" \
-  -backend-config="key=hello-world/terraform.tfstate" 
+  -backend-config="key=microservice-example/terraform.tfstate" 
 
 terraform get
 terraform plan
@@ -19,13 +19,13 @@ terraform apply
 
 # create app version // terraform should support this soon
 aws elasticbeanstalk create-application-version \
-  --application-name "hello-world" \
+  --application-name "microservice-example" \
   --version-label v1 \
   --source-bundle S3Bucket=$(terraform output app_code_s3_bucket),S3Key=$(terraform output app_code_s3_key) \
   --no-auto-create-application
 
 # deploy app version 
 aws elasticbeanstalk update-environment \
-  --application-name "hello-world" \
+  --application-name "microservice-example" \
   --environment-name "Default-Environment" \
   --version-label v1
