@@ -16,3 +16,15 @@ terraform remote config \
 terraform get
 terraform plan
 terraform apply
+
+# create app version // terraform should support this soon
+aws elasticbeanstalk create-application-version \
+  --application-name "aws docker microservice example" \
+  --version-label v1 \
+  --source-bundle S3Bucket=$(terraform output app_code_s3_bucket),S3Key=$(terraform output app_code_s3_key) \
+  --no-auto-create-application
+
+aws elasticbeanstalk update-environment \
+  --application-name "aws docker microservice example" \
+  --environment-name "Default-Environment" \
+  --version-label v1
