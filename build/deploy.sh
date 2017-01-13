@@ -6,8 +6,6 @@ BASEDIR=$PWD/$BASEDIR
 
 export TF_VAR_aws_account_id=$(aws sts get-caller-identity --output text --query 'Account')
 export TF_VAR_aws_region=$AWS_DEFAULT_REGION
-export app_version_label="default"
-export TF_VAR_app_version_label=$app_version_label
 
 cd $BASEDIR/../infrastructure/dev
 
@@ -27,7 +25,7 @@ if [ -z "$version_exists" ]; then
   # create app version // terraform should support this soon
   aws elasticbeanstalk create-application-version \
     --application-name "microservice-example" \
-    --version-label $app_version_label \
+    --version-label "default" \
     --source-bundle S3Bucket=$(terraform output app_code_s3_bucket),S3Key=$(terraform output app_code_s3_key) \
     --no-auto-create-application
 fi
@@ -36,4 +34,4 @@ fi
 aws elasticbeanstalk update-environment \
   --application-name "microservice-example" \
   --environment-name "Default-Environment" \
-  --version-label $app_version_label
+  --version-label "default"
