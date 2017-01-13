@@ -44,6 +44,12 @@ resource "aws_elastic_beanstalk_environment" "appEnv" {
     name      = "InstanceType"
     value     = "t2.nano"
   }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "ENV"
+    value     = "${var.env}"
+  }
 }
 
 resource "aws_s3_bucket_object" "application_code" {
