@@ -6,6 +6,8 @@ variable "project_name" {}
 
 variable "aws_account_id" {}
 
+variable "app_version_label" {}
+
 variable "app_code_path" {
   default = "../../"
 }
